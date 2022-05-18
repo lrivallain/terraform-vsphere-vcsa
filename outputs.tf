@@ -4,13 +4,13 @@ output "administrator_user" {
 }
 
 output "root_password" {
-  value       = random_password.root_password.result
+  value       = var.root_password == "" ? random_password.root_password.result: var.root_password
   sensitive   = true
   description = "The root password that was generated for the vCenter Server Appliance."
 }
 
 output "administrator_password" {
-  value       = random_password.administrator_password.result
+  value       = var.administrator_password == "" ? random_password.administrator_password.result : var.administrator_password
   sensitive   = true
   description = "The password of the default VMware SSO Administrator."
 }

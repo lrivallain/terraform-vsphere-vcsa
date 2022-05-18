@@ -9,7 +9,7 @@ locals {
       "vcsa_embedded" = {
         "ceip_enabled" = true
         "standalone" = {
-          "sso_admin_password" = random_password.administrator_password.result
+          "sso_admin_password" = var.administrator_password == "" ? random_password.administrator_password.result : var.administrator_password
           "sso_domain_name"    = var.sso_domain_name
         }
       }
@@ -19,12 +19,27 @@ locals {
 
 resource "random_password" "root_password" {
   length  = 16
+  lower = true
+  upper = true
+  numeric = true
   special = true
+  min_lower = 1
+  min_upper = 1
+  min_numeric = 1
+  min_special = 1
+
 }
 
 resource "random_password" "administrator_password" {
   length  = 16
+  lower = true
+  upper = true
+  numeric = true
   special = true
+  min_lower = 1
+  min_upper = 1
+  min_numeric = 1
+  min_special = 1
 }
 
 data "vsphere_ovf_vm_template" "ova" {
@@ -92,7 +107,7 @@ resource "vsphere_virtual_machine" "vcsa" {
       "guestinfo.cis.appliance.net.prefix"      = var.prefix
       "guestinfo.cis.appliance.net.gateway"     = var.gateway
       "guestinfo.cis.appliance.net.pnid"        = var.hostname
-      "guestinfo.cis.appliance.root.passwd"     = random_password.root_password.result
+      "guestinfo.cis.appliance.root.passwd"     = var.root_password == "" ? random_password.root_password.result: var.root_password
       "guestinfo.cis.ceip_enabled"              = title(tostring(var.enable_ceip))
     }
   }
@@ -102,7 +117,7 @@ resource "vsphere_virtual_machine" "vcsa" {
     environment = {
       VCENTER_HOSTNAME = var.hostname
       VAMI_USERNAME    = "root"
-      VAMI_PASSWORD    = random_password.root_password.result
+      VAMI_PASSWORD    = var.root_password == "" ? random_password.root_password.result: var.root_password
     }
   }
 
@@ -111,7 +126,7 @@ resource "vsphere_virtual_machine" "vcsa" {
     environment = {
       VCENTER_HOSTNAME = var.hostname
       VAMI_USERNAME    = "root"
-      VAMI_PASSWORD    = random_password.root_password.result
+      VAMI_PASSWORD    = var.root_password == "" ? random_password.root_password.result: var.root_password
       BODY             = jsonencode(local.stage2_install_body)
     }
   }
@@ -121,7 +136,7 @@ resource "vsphere_virtual_machine" "vcsa" {
     environment = {
       VCENTER_HOSTNAME = var.hostname
       VAMI_USERNAME    = "root"
-      VAMI_PASSWORD    = random_password.root_password.result
+      VAMI_PASSWORD    = var.root_password == "" ? random_password.root_password.result: var.root_password
       ENABLE_SSH       = title(tostring(var.enable_ssh))
     }
   }
@@ -131,6 +146,8 @@ resource "vsphere_virtual_machine" "vcsa" {
       // it looks like some of the properties get deleted from the VM after it is deployed
       // just ignore them after the initial deployment
       vapp.0.properties,
+      // ignore changes made by DRS or vMotion after deployment
+      host_system_id
     ]
   }
 }

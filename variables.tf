@@ -130,3 +130,15 @@ variable "gateway" {
   default     = ""
   description = "The gateway of the vCenter Server Appliance. This defaults to \"\" which results in DHCP being used. Must be set if a static IP is set in `ip_address`"
 }
+
+variable "root_password" {
+  type = string
+  default = ""
+  description = "Pawword of the vCenter Server Appliance root account. This defaults to \"\" which result in random password to be generated."
+}
+
+variable "administrator_password" {
+  type = string
+  default = ""
+  description = "Pawword of the administrator account of the sso_domain_name. This defaults to \"\" which result in random password to be generated."
+}

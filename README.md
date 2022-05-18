@@ -62,7 +62,9 @@ No Modules.
 | prefix | The subnet of the vCenter Server Appliance in CIDR format. This defaults to `null`. Must be set if a static IP is set in `ip_address`. | `number` | `null` | no |
 | provisioner\_timeout | The max amount of time to wait in minutes for the vCenter Server Appliance to become available after provisioning | `number` | `60` | no |
 | resource\_pool\_id | The ID of the resource pool the vCenter Server Appliance should be created in. | `string` | n/a | yes |
-| sso\_domain\_name | The name of the internal SSO domain.  Defaults to "vsphere.local". | `string` | `"vsphere.local"` | no |
+| sso\_domain\_name | The name of the internal SSO domain. Defaults to "vsphere.local". | `string` | `"vsphere.local"` | no |
+| root\_password | Password of the appliance root account. Defaults to `null`. If unset, a random password will be generated. | `string` | n/a | no |
+| administrator\_password | Password of the administrator of the SSO domain. Defaults to `null`. If unset, a random password will be generated. | `string` | n/a | no |
 
 ## Outputs
 
