@@ -15,7 +15,7 @@ variable "network_id" {
 
 variable "datacenter_id" {
   type        = string
-  description = "The ID of the dataceter the vCenter Server Appliance should be created in."
+  description = "The ID of the datacenter the vCenter Server Appliance should be created in."
 }
 
 variable "resource_pool_id" {
@@ -59,7 +59,7 @@ variable "cpu_count_override" {
 variable "memory_override" {
   type        = number
   default     = 0
-  description = "The ammount of memory the vCenter Server Appliance should have. Defaults to 0 which uses the memory size of the deployment selected."
+  description = "The amount of memory the vCenter Server Appliance should have. Defaults to 0 which uses the memory size of the deployment selected."
 
   validation {
     condition     = var.memory_override >= 0
@@ -134,11 +134,11 @@ variable "gateway" {
 variable "root_password" {
   type = string
   default = ""
-  description = "Pawword of the vCenter Server Appliance root account. This defaults to \"\" which result in random password to be generated."
+  description = "Password of the vCenter Server Appliance root account. This defaults to \"\" which result in random password to be generated."
 }
 
 variable "administrator_password" {
   type = string
   default = ""
-  description = "Pawword of the administrator account of the sso_domain_name. This defaults to \"\" which result in random password to be generated."
+  description = "Password of the administrator account of the sso_domain_name. This defaults to \"\" which result in random password to be generated."
 }
