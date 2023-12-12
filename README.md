@@ -58,7 +58,7 @@ No Modules.
 | memory\_override | The ammount of memory the vCenter Server Appliance should have. Defaults to 0 which uses the memory size of the deployment selected. | `number` | `0` | no |
 | network\_id | The ID of the network the vCenter Server Appliance should be attached to. | `string` | n/a | yes |
 | ntp | The NTP server for the vCenter Server Appliance. Defaults to "pool.ntp.org". | `string` | `"pool.ntp.org"` | no |
-| ova\_path | The full path to the vCenter Server Appliance OVA. | `string` | n/a | yes |
+| ova\_uri | The URI to download the vCenter Server Appliance OVA from. | `string` | n/a | yes |
 | prefix | The subnet of the vCenter Server Appliance in CIDR format. This defaults to `null`. Must be set if a static IP is set in `ip_address`. | `number` | `null` | no |
 | provisioner\_timeout | The max amount of time to wait in minutes for the vCenter Server Appliance to become available after provisioning | `number` | `60` | no |
 | resource\_pool\_id | The ID of the resource pool the vCenter Server Appliance should be created in. | `string` | n/a | yes |

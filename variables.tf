@@ -1,6 +1,6 @@
-variable "ova_path" {
+variable "ova_uri" {
   type        = string
-  description = "The full path to the vCenter Server Appliance OVA."
+  description = "The URI to download the vCenter Server Appliance OVA from"
 }
 
 variable "folder_name" {

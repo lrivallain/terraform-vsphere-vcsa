@@ -48,7 +48,7 @@ data "vsphere_ovf_vm_template" "ova" {
   resource_pool_id  = var.resource_pool_id
   datastore_id      = var.datastore_id
   host_system_id    = var.host_system_id
-  local_ovf_path    = var.ova_path
+  remote_ovf_url    = var.ova_uri
   deployment_option = var.deployment_size
   disk_provisioning = "thin"
   ip_protocol       = "IPv4"
