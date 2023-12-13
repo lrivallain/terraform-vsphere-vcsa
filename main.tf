@@ -91,7 +91,7 @@ resource "vsphere_virtual_machine" "vcsa" {
   cdrom {}
 
   ovf_deploy {
-    local_ovf_path    = data.vsphere_ovf_vm_template.ova.local_ovf_path
+    remote_ovf_url    = data.vsphere_ovf_vm_template.ova.remote_ovf_url
     disk_provisioning = data.vsphere_ovf_vm_template.ova.disk_provisioning
     ip_protocol       = data.vsphere_ovf_vm_template.ova.ip_protocol
     ovf_network_map   = data.vsphere_ovf_vm_template.ova.ovf_network_map
